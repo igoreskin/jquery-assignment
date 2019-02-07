@@ -1,12 +1,9 @@
 $(document).ready(function() {
 
 
-        $.getJSON("./students.json", function(json) {
+        $.getJSON("./students-data.json", function(json) {
             console.log(json.length);
+            localStorage.setItem('studentsinfor',JSON.stringify(json))
             $(".container").text(JSON.stringify(json));
         })
- 
-
-
-
 })

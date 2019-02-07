@@ -36,8 +36,8 @@ var obj = {
     }
 }
 
-// localStorage.setItem('students', obj);
+// localStorage.setItem('students', JSON.stringify(obj));
 
-$.jStorage.set('key', 'test');  
-value = $.jStorage.get('key');
-alert("test"+value);
+// $.jStorage.set('key', 'test');  
+// value = $.jStorage.get('key');
+// alert("test"+value);
