@@ -6,6 +6,8 @@ $(document).ready(function() {
         });
     } 
 
+    console.log(JSON.parse(localStorage.studentsinfo).length);
+
     let data = JSON.parse(localStorage.getItem('studentsinfo'));
     // $('.test').text(JSON.stringify(data[0].firstname));
 
@@ -21,6 +23,9 @@ $(document).ready(function() {
     </tr>`);
     }
 
+    let entry = $('tbody').children().last().children().first().text();
+    console.log(entry);
+
 //     $('tbody').append(`<tr>
 //     <th scope='row'>1</th>
 //     <td>Mark</td>
@@ -31,5 +36,26 @@ $(document).ready(function() {
 //     <td>New York, USA</td>
 //   </tr>`);
 
+    $('form').submit(function(event) {
+        event.preventDefault();
+        var $inputs = $('form :input');
+        var values = {};
+        $inputs.each(function() {
+            values[this.name] = $(this).val();
+        });
+        $('.test').text(JSON.stringify(values))
+        let entryNumber = $('tbody').children().last().children().first().text();
+        $('tbody').append(`<tr>
+        <th scope='row'>${Number(entryNumber)+1}</th>
+        <td>${values.firstname}</td>
+        <td>${values.lastname}</td>
+        <td>${values.email}</td>
+        <td>${values.location}</td>
+        <td>${values.phone}</td>
+        <td>${values.address}</td>
+        </tr>`);
+        $('input').val('');
+    });
 
 })
+
