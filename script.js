@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+    // localStorage.clear();
+
     if(localStorage.length == 0){
         $.getJSON("./students-data.json", function(json) {
             localStorage.setItem('studentsinfo', JSON.stringify(json))
@@ -11,7 +13,7 @@ $(document).ready(function() {
     console.log(JSON.parse(localStorage.studentsinfo)[length - 1])
 
     let data = JSON.parse(localStorage.getItem('studentsinfo'));
-    $('.test').text(JSON.stringify(data[0].firstname));
+    // $('.test').text(JSON.stringify(data[0].firstname));
 
     for(let i = 0; i < 10; i++) {
         $('tbody').append(`<tr>
@@ -24,21 +26,6 @@ $(document).ready(function() {
     <td>${data[i].address.permanent}</td>
     </tr>`);
     }
-
-    function nestedInput() {
-        $('<input>').attr({
-          type: 'visible',
-          id: 'testInput',
-          value: 'Test',
-          placeholder: 'Permanent',
-        }).appendTo($('input[name="address"]'));
-        
-        //get value of new nested input and write it to output div
-        $('.test').text($('#testInput').val());
-      }
-
-    nestedInput();
-
 
     let entry = $('tbody').children().last().children().first().text();
     console.log(entry);
@@ -57,8 +44,15 @@ $(document).ready(function() {
         event.preventDefault();
         var $inputs = $('form :input');
         var values = {};
+        values.address = {};
         $inputs.each(function() {
-            values[this.name] = $(this).val();
+            if (this.name != 'communication' && this.name != 'permanent') {
+                values[this.name] = $(this).val();
+            } 
+            else {
+                values.address[this.name] = $(this).val()
+            }
+           
         });
         $('.test').text(JSON.stringify(values))
         let entryNumber = $('tbody').children().last().children().first().text();
@@ -71,10 +65,11 @@ $(document).ready(function() {
         <td>${values.phone}</td>
         <td>${values.address}</td>
         </tr>`);
-        // let storage = JSON.parse(localStorage.studentsinfo);
-        // storage.unshift(values);
-        // console.log(storage[storage.length - 1]);
-        // localStorage.setItem('studentsinfo', JSON.stringify(storage));
+        let storage = JSON.parse(localStorage.studentsinfo);
+        storage.unshift(values);
+        console.log(values)
+        console.log(storage[storage.length - 1]);
+        localStorage.setItem('studentsinfo', JSON.stringify(storage));
         $('input').val('');
     });
 
