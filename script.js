@@ -6,10 +6,12 @@ $(document).ready(function() {
         });
     } 
 
-    console.log(JSON.parse(localStorage.studentsinfo).length);
+    let length = JSON.parse(localStorage.studentsinfo).length
+    console.log(length)
+    console.log(JSON.parse(localStorage.studentsinfo)[length - 1])
 
     let data = JSON.parse(localStorage.getItem('studentsinfo'));
-    // $('.test').text(JSON.stringify(data[0].firstname));
+    $('.test').text(JSON.stringify(data[0].firstname));
 
     for(let i = 0; i < 10; i++) {
         $('tbody').append(`<tr>
@@ -22,6 +24,21 @@ $(document).ready(function() {
     <td>${data[i].address.permanent}</td>
     </tr>`);
     }
+
+    function nestedInput() {
+        $('<input>').attr({
+          type: 'visible',
+          id: 'testInput',
+          value: 'Test',
+          placeholder: 'Permanent',
+        }).appendTo($('input[name="address"]'));
+        
+        //get value of new nested input and write it to output div
+        $('.test').text($('#testInput').val());
+      }
+
+    nestedInput();
+
 
     let entry = $('tbody').children().last().children().first().text();
     console.log(entry);
@@ -54,6 +71,10 @@ $(document).ready(function() {
         <td>${values.phone}</td>
         <td>${values.address}</td>
         </tr>`);
+        // let storage = JSON.parse(localStorage.studentsinfo);
+        // storage.unshift(values);
+        // console.log(storage[storage.length - 1]);
+        // localStorage.setItem('studentsinfo', JSON.stringify(storage));
         $('input').val('');
     });
 
