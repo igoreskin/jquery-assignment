@@ -2,6 +2,23 @@ html {
     font-size: 16px;
 }
 
+.heading {
+    text-align: center;
+    margin: 30px auto;
+}
+
+form {
+    margin-bottom: 60px;
+}
+
+.form-heading {
+    margin: 30px auto;
+}
+
+.form-row {
+    margin-bottom: 20px;
+}
+
 .table {
     margin-top: 30px;
 }
