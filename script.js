@@ -17,14 +17,14 @@ $(document).ready(function() {
 
     for(let i = 0; i < 10; i++) {
         $('tbody').append(`<tr>
-    <th scope='row'>${i+1}</th>
-    <td>${data[i].firstname}</td>
-    <td>${data[i].lastname}</td>
-    <td>${data[i].email}</td>
-    <td>${data[i].location}</td>
-    <td>${data[i].phone}</td>
-    <td>${data[i].address.permanent}</td>
-    </tr>`);
+        <th scope='row'>${i+1}</th>
+        <td>${data[i].firstname}</td>
+        <td>${data[i].lastname}</td>
+        <td>${data[i].email}</td>
+        <td>${data[i].location}</td>
+        <td>${data[i].phone}</td>
+        <td>${data[i].address.permanent}</td>
+        </tr>`);
     }
 
     let entry = $('tbody').children().last().children().first().text();
@@ -40,7 +40,7 @@ $(document).ready(function() {
 //     <td>New York, USA</td>
 //   </tr>`);
 
-    $('form').submit(function(event) {
+    $('form.input-form').submit(function(event) {
         event.preventDefault();
         var $inputs = $('form :input');
         var values = {};
@@ -54,7 +54,7 @@ $(document).ready(function() {
             }
            
         });
-        $('.test').text(JSON.stringify(values))
+        // $('.test').text(JSON.stringify(values))
         let entryNumber = $('tbody').children().last().children().first().text();
         $('tbody').append(`<tr>
         <th scope='row'>${Number(entryNumber)+1}</th>
@@ -63,7 +63,7 @@ $(document).ready(function() {
         <td>${values.email}</td>
         <td>${values.location}</td>
         <td>${values.phone}</td>
-        <td>${values.address}</td>
+        <td>${values.address.permanent}</td>
         </tr>`);
         let storage = JSON.parse(localStorage.studentsinfo);
         storage.unshift(values);
