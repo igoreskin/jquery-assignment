@@ -40,9 +40,22 @@ $(document).ready(function() {
 //     <td>New York, USA</td>
 //   </tr>`);
 
+    $('form.form-inline').submit(function(event) {
+        event.preventDefault();
+        var input = $('input').val();
+        // $('.test').text(input);
+        // $('.test').text(JSON.stringify(data[0].firstname));
+        // $('.test').text(data[0].firstname);
+        for(let el of data) {
+            if(el.firstname == input || el.lastname == input) {
+                $('.test').text(el.lastname);
+            }
+        }
+    })
+
     $('form.input-form').submit(function(event) {
         event.preventDefault();
-        var $inputs = $('form :input');
+        var $inputs = $('form.input-form :input');
         var values = {};
         values.address = {};
         $inputs.each(function() {
