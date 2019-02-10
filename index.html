@@ -78,6 +78,7 @@
           <th scope="col">Location</th>
           <th scope="col">Phone</th>
           <th scope="col">Address</th>
+          <th scope="col">More</th>
         </tr>
       </thead>
       <tbody>
@@ -121,7 +122,29 @@
     </div>
   </div>
 
-
+  <script>
+    function showModal() {
+        $('.modal-body').html(
+          `<ul>
+            <li>First name: ${data[i].firstname}</li>
+            <li>Last name: ${data[i].lastname}</li>
+            <li>Email: ${data[i].email}</li>
+            <li>Location: ${data[i].location}</li>
+            <li>Phone: ${data[i].phone}</li>
+            <li>Address communication: ${data[i].address.communication}</li>
+            <li>Address permanent: ${data[i].address.permanent}</li>
+            <li> Marks:
+                <ul>
+                    <li>English: ${data[i].marks.english}</li>
+                    <li>Science: ${data[i].marks.science}</li>
+                    <li>Computers: ${data[i].marks.computers}</li>
+                    <li>Hardware: ${data[i].marks.hardware}</li>
+                </ul>
+            </li>
+        </ul>`
+        )
+      }
+  </script>
   
   <script src="./script.js"></script>
   <script src="./students-data.json"></script>

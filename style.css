@@ -34,3 +34,11 @@ tbody {
 ul {
     list-style: none;
 }
+
+.btn.btn-light.btn-xs {
+    font-size: 14px;
+    margin-top: -7px;
+    margin-left: -11px;
+    background-color: inherit;
+    border: none;
+}

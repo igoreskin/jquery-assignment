@@ -17,13 +17,14 @@ $(document).ready(function() {
 
     for(let i = 0; i < 10; i++) {
         $('tbody').append(`<tr>
-        <th scope='row'>${i+1}</th>
-        <td>${data[i].firstname}</td>
-        <td>${data[i].lastname}</td>
-        <td>${data[i].email}</td>
-        <td>${data[i].location}</td>
-        <td>${data[i].phone}</td>
-        <td>${data[i].address.permanent}</td>
+            <th scope='row'>${i+1}</th>
+            <td>${data[i].firstname}</td>
+            <td>${data[i].lastname}</td>
+            <td>${data[i].email}</td>
+            <td>${data[i].location}</td>
+            <td>${data[i].phone}</td>
+            <td>${data[i].address.permanent}</td>
+            <td><button onclick="showModal()" class="btn btn-light btn-xs" data-toggle="modal" data-target="#exampleModal">More info</button></td>
         </tr>`);
     }
 
@@ -59,7 +60,7 @@ $(document).ready(function() {
                         <li>Phone: ${el.phone}</li>
                         <li>Address communication: ${el.address.communication}</li>
                         <li>Address permanent: ${el.address.permanent}</li>
-                        <li> Marks:
+                        <li>Marks:
                             <ul>
                                 <li>English: ${el.marks.english}</li>
                                 <li>Science: ${el.marks.science}</li>
