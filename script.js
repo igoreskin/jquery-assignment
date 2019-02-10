@@ -49,7 +49,7 @@ $(document).ready(function() {
         // $('.test').text(data[0].firstname);
         for(let el of data) {
             if(el.firstname == input || el.lastname == input || el.location.includes(input) || el.phone == input) {
-                $('.test').text(el.address.communication);
+                // $('.test').text(el.address.communication);
                 $('.modal-body').html(
                     `<ul>
                         <li>First name: ${el.firstname}</li>
