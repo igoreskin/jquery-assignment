@@ -49,7 +49,7 @@ $(document).ready(function() {
         // $('.test').text(data[0].firstname);
         for(let el of data) {
             if(el.firstname == input || el.lastname == input || el.location.includes(input) || el.phone == input) {
-                // $('.test').text(el.lastname);
+                $('.test').text(el.address.communication);
                 $('.modal-body').html(
                     `<ul>
                         <li>First name: ${el.firstname}</li>
@@ -57,7 +57,16 @@ $(document).ready(function() {
                         <li>Email: ${el.email}</li>
                         <li>Location: ${el.location}</li>
                         <li>Phone: ${el.phone}</li>
-                        <li>Address: ${el.address.permanent}</li>
+                        <li>Address communication: ${el.address.communication}</li>
+                        <li>Address permanent: ${el.address.permanent}</li>
+                        <li> Marks:
+                            <ul>
+                                <li>English: ${el.marks.english}</li>
+                                <li>Science: ${el.marks.science}</li>
+                                <li>Computers: ${el.marks.computers}</li>
+                                <li>Hardware: ${el.marks.hardware}</li>
+                            </ul>
+                        </li>
                     </ul>`
                 )
             }
