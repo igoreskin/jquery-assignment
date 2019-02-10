@@ -8,9 +8,9 @@ $(document).ready(function() {
         });
     } 
 
-    let length = JSON.parse(localStorage.studentsinfo).length
-    console.log(length)
-    console.log(JSON.parse(localStorage.studentsinfo)[length - 1])
+    // let length = JSON.parse(localStorage.studentsinfo).length
+    // console.log(length)
+    // console.log(JSON.parse(localStorage.studentsinfo)[length - 1])
 
     let data = JSON.parse(localStorage.getItem('studentsinfo'));
     // $('.test').text(JSON.stringify(data[0].firstname));
@@ -43,13 +43,13 @@ $(document).ready(function() {
     $('form.form-inline').submit(function(event) {
         event.preventDefault();
         var input = $('input').val();
-        var modal = $('.modal');
+        // var modal = $('.modal');
         // $('.test').text(input);
         // $('.test').text(JSON.stringify(data[0].firstname));
         // $('.test').text(data[0].firstname);
         for(let el of data) {
             if(el.firstname == input || el.lastname == input || el.location.includes(input) || el.phone == input) {
-                $('.test').text(el.lastname);
+                // $('.test').text(el.lastname);
                 $('.modal-body').html(
                     `<ul>
                         <li>First name: ${el.firstname}</li>
@@ -57,7 +57,7 @@ $(document).ready(function() {
                         <li>Email: ${el.email}</li>
                         <li>Location: ${el.location}</li>
                         <li>Phone: ${el.phone}</li>
-                        <li>Address: ${el.address.permanenet}</li>
+                        <li>Address: ${el.address.permanent}</li>
                     </ul>`
                 )
             }
@@ -67,6 +67,13 @@ $(document).ready(function() {
     $('form.input-form').submit(function(event) {
         event.preventDefault();
         var $inputs = $('form.input-form :input');
+        let firstname = $('form.input-form #firstname').val();
+        let lastname = $('form.input-form #lastname').val();
+        console.log(firstname);
+        if (/[^a-zA-Z]+/.test(firstname) || /[^a-zA-Z]+/.test(lastname) || firstname.length === 0  || lastname.length === 0) {
+            alert("Please enter student's first and last name");
+            return;
+        }
         var values = {};
         values.address = {};
         $inputs.each(function() {
@@ -91,8 +98,8 @@ $(document).ready(function() {
         </tr>`);
         let storage = JSON.parse(localStorage.studentsinfo);
         storage.unshift(values);
-        console.log(values)
-        console.log(storage[storage.length - 1]);
+        // console.log(values)
+        // console.log(storage[storage.length - 1]);
         localStorage.setItem('studentsinfo', JSON.stringify(storage));
         $('input').val('');
     });
