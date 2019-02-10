@@ -43,12 +43,23 @@ $(document).ready(function() {
     $('form.form-inline').submit(function(event) {
         event.preventDefault();
         var input = $('input').val();
+        var modal = $('.modal');
         // $('.test').text(input);
         // $('.test').text(JSON.stringify(data[0].firstname));
         // $('.test').text(data[0].firstname);
         for(let el of data) {
-            if(el.firstname == input || el.lastname == input) {
+            if(el.firstname == input || el.lastname == input || el.location.includes(input) || el.phone == input) {
                 $('.test').text(el.lastname);
+                $('.modal-body').html(
+                    `<ul>
+                        <li>First name: ${el.firstname}</li>
+                        <li>Last name: ${el.lastname}</li>
+                        <li>Email: ${el.email}</li>
+                        <li>Location: ${el.location}</li>
+                        <li>Phone: ${el.phone}</li>
+                        <li>Address: ${el.address.permanenet}</li>
+                    </ul>`
+                )
             }
         }
     })
@@ -63,7 +74,7 @@ $(document).ready(function() {
                 values[this.name] = $(this).val();
             } 
             else {
-                values.address[this.name] = $(this).val()
+                values.address[this.name] = $(this).val();
             }
            
         });
