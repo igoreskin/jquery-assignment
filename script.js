@@ -17,7 +17,7 @@ $(document).ready(function() {
 
     // let n = 10;
     for(let i = 0; i < 10; i++) {
-        $('tbody').append(`<tr>
+        $('tbody').append(`<tr class="entry">
             <th scope='row'>${i+1}</th>
             <td>${data[i].firstname}</td>
             <td>${data[i].lastname}</td>
@@ -40,25 +40,37 @@ $(document).ready(function() {
         // $('.test').text(data[0].firstname);
         for(let el of data) {
             if(el.firstname == input || el.lastname == input || el.location.includes(input) || el.phone == input) {
-                $('.modal-body').html(
-                    `<ul>
-                        <li>First name: ${el.firstname}</li>
-                        <li>Last name: ${el.lastname}</li>
-                        <li>Email: ${el.email}</li>
-                        <li>Location: ${el.location}</li>
-                        <li>Phone: ${el.phone}</li>
-                        <li>Address communication: ${el.address.communication}</li>
-                        <li>Address permanent: ${el.address.permanent}</li>
-                        <li>Marks:
-                            <ul>
-                                <li>English: ${el.marks.english}</li>
-                                <li>Science: ${el.marks.science}</li>
-                                <li>Computers: ${el.marks.computers}</li>
-                                <li>Hardware: ${el.marks.hardware}</li>
-                            </ul>
-                        </li>
-                    </ul>`
-                )
+                $('.entry').remove();
+                $('tbody').append(`<tr class="entry">
+                    <th scope='row'>${data.indexOf(el) + 1}</th>
+                    <td>${el.firstname}</td>
+                    <td>${el.lastname}</td>
+                    <td>${el.email}</td>
+                    <td>${el.location}</td>
+                    <td>${el.phone}</td>
+                    <td>${el.address.permanent}</td>
+                    <td><button onclick="showModal(event)" class="btn btn-light btn-xs" data-toggle="modal" data-target="#exampleModal">More info</button></td>
+                </tr>`);
+
+                // $('.modal-body').html(
+                //     `<ul>
+                //         <li>First name: ${el.firstname}</li>
+                //         <li>Last name: ${el.lastname}</li>
+                //         <li>Email: ${el.email}</li>
+                //         <li>Location: ${el.location}</li>
+                //         <li>Phone: ${el.phone}</li>
+                //         <li>Address communication: ${el.address.communication}</li>
+                //         <li>Address permanent: ${el.address.permanent}</li>
+                //         <li>Marks:
+                //             <ul>
+                //                 <li>English: ${el.marks.english}</li>
+                //                 <li>Science: ${el.marks.science}</li>
+                //                 <li>Computers: ${el.marks.computers}</li>
+                //                 <li>Hardware: ${el.marks.hardware}</li>
+                //             </ul>
+                //         </li>
+                //     </ul>`
+                // )
             }
         }
     })
@@ -86,7 +98,7 @@ $(document).ready(function() {
         });
         // $('.test').text(JSON.stringify(values))
         let entryNumber = $('tbody').children().last().children().first().text();
-        $('tbody').append(`<tr>
+        $('tbody').append(`<tr class="entry">
         <th scope='row'>${Number(entryNumber)+1}</th>
         <td>${values.firstname}</td>
         <td>${values.lastname}</td>
@@ -136,7 +148,7 @@ function showModal(event) {
 }
 
 function setNumber(number) {
-    $('tr').remove();
+    $('.entry').remove();
     let numberOfPages = 0;
     // alert(`Showing ${number} records`);
     numberOfPages = number;
@@ -144,7 +156,7 @@ function setNumber(number) {
     let n = numberOfPages || 10;
     let j = 0;
     for(let i = j; i < j + n; i++) {;
-        $('tbody').append(`<tr>
+        $('tbody').append(`<tr class="entry">
             <th scope='row'>${i+1}</th>
             <td>${data[i].firstname}</td>
             <td>${data[i].lastname}</td>
