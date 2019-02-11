@@ -8,9 +8,9 @@ $(document).ready(function() {
         });
     } 
 
-    // let length = JSON.parse(localStorage.studentsinfo).length
-    // console.log(length)
-    // console.log(JSON.parse(localStorage.studentsinfo)[length - 1])
+    let length = JSON.parse(localStorage.studentsinfo).length
+    console.log(length)
+    console.log(JSON.parse(localStorage.studentsinfo)[0])
 
     let data = JSON.parse(localStorage.getItem('studentsinfo'));
     // $('.test').text(JSON.stringify(data[0].firstname));
@@ -35,13 +35,11 @@ $(document).ready(function() {
     $('form.form-inline').submit(function(event) {
         event.preventDefault();
         var input = $('input').val();
-        // var modal = $('.modal');
         // $('.test').text(input);
         // $('.test').text(JSON.stringify(data[0].firstname));
         // $('.test').text(data[0].firstname);
         for(let el of data) {
             if(el.firstname == input || el.lastname == input || el.location.includes(input) || el.phone == input) {
-                // $('.test').text(el.address.communication);
                 $('.modal-body').html(
                     `<ul>
                         <li>First name: ${el.firstname}</li>
@@ -100,9 +98,10 @@ $(document).ready(function() {
         </tr>`);
         let storage = JSON.parse(localStorage.studentsinfo);
         storage.unshift(values);
-        // console.log(values)
+        console.log(storage[0]);
         // console.log(storage[storage.length - 1]);
         localStorage.setItem('studentsinfo', JSON.stringify(storage));
+        console.log(localStorage.studentsinfo);
         $('input').val('');
     });
 
