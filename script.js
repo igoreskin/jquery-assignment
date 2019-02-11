@@ -8,15 +8,15 @@ $(document).ready(function() {
         });
     } 
 
-    let length = JSON.parse(localStorage.studentsinfo).length
-    console.log(length)
-    console.log(JSON.parse(localStorage.studentsinfo)[0])
+    // let length = JSON.parse(localStorage.studentsinfo).length
+    // console.log(length)
+    // console.log(JSON.parse(localStorage.studentsinfo)[0])
 
-    let data = JSON.parse(localStorage.getItem('studentsinfo'));
+    // let data = JSON.parse(localStorage.getItem('studentsinfo'));
     // $('.test').text(JSON.stringify(data[0].firstname));
 
-    let n = 10;
-    for(let i = 0; i < n; i++) {
+    // let n = 10;
+    for(let i = 0; i < 10; i++) {
         $('tbody').append(`<tr>
             <th scope='row'>${i+1}</th>
             <td>${data[i].firstname}</td>
@@ -25,12 +25,12 @@ $(document).ready(function() {
             <td>${data[i].location}</td>
             <td>${data[i].phone}</td>
             <td>${data[i].address.permanent}</td>
-            <td><button onclick="showModal()" class="btn btn-light btn-xs" data-toggle="modal" data-target="#exampleModal">More info</button></td>
+            <td><button onclick="showModal(event)" class="btn btn-light btn-xs" data-toggle="modal" data-target="#exampleModal">More info</button></td>
         </tr>`);
     }
 
-    let entry = $('tbody').children().last().children().first().text();
-    console.log(entry);
+    // let entry = $('tbody').children().last().children().first().text();
+    // console.log(entry);
 
     $('form.form-inline').submit(function(event) {
         event.preventDefault();
@@ -94,7 +94,7 @@ $(document).ready(function() {
         <td>${values.location}</td>
         <td>${values.phone}</td>
         <td>${values.address.permanent}</td>
-        <td><button onclick="showModal()" class="btn btn-light btn-xs" data-toggle="modal" data-target="#exampleModal">More info</button></td>
+        <td><button onclick="showModal(event)" class="btn btn-light btn-xs" data-toggle="modal" data-target="#exampleModal">More info</button></td>
         </tr>`);
         let storage = JSON.parse(localStorage.studentsinfo);
         storage.unshift(values);
@@ -108,9 +108,12 @@ $(document).ready(function() {
 })
 
 
-// let data = JSON.parse(localStorage.getItem('studentsinfo'));
+let data = JSON.parse(localStorage.getItem('studentsinfo'));
 
-function showModal() {
+function showModal(event) {
+    console.log(event.target.parentElement.parentElement.children[0].innerText);
+    let i = event.target.parentElement.parentElement.children[0].innerText - 1;
+    // console.log(i);
     $('.modal-body').html(
         `<ul>
             <li>First name: ${data[i].firstname}</li>
@@ -133,8 +136,23 @@ function showModal() {
 }
 
 function setNumber(number) {
-    alert(`Showing ${number} records`);
-    let n = number;
-    return n;
+    $('tr').remove();
+    let numberOfPages = 0;
+    // alert(`Showing ${number} records`);
+    numberOfPages = number;
+    console.log(numberOfPages);
+    let n = numberOfPages || 10;
+    let j = 0;
+    for(let i = j; i < j + n; i++) {;
+        $('tbody').append(`<tr>
+            <th scope='row'>${i+1}</th>
+            <td>${data[i].firstname}</td>
+            <td>${data[i].lastname}</td>
+            <td>${data[i].email}</td>
+            <td>${data[i].location}</td>
+            <td>${data[i].phone}</td>
+            <td>${data[i].address.permanent}</td>
+            <td><button onclick="showModal(event)" class="btn btn-light btn-xs" data-toggle="modal" data-target="#exampleModal">More info</button></td>
+        </tr>`);
+    }
 }
-
