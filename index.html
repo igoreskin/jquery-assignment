@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="./style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" 
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" 
     rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" 
     crossorigin="anonymous">
@@ -67,6 +70,33 @@
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+
+    <div class="form-row pages">
+      <div class="col">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="dropdown col">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Select number of records
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#" onclick="setNumber(10)">10 records</a>
+          <a class="dropdown-item" href="#" onclick="setNumber(20)">20 records</a>
+          <a class="dropdown-item" href="#" onclick="setNumber(50)">50 records</a>
+          <a class="dropdown-item" href="#" onclick="setNumber(100)">100 records</a>
+        </div>
+      </div>
+    </div>
     
     <table class="table table-striped">
       <thead class="thead-dark">
@@ -122,29 +152,6 @@
     </div>
   </div>
 
-  <script>
-    function showModal() {
-        $('.modal-body').html(
-          `<ul>
-            <li>First name: ${data[i].firstname}</li>
-            <li>Last name: ${data[i].lastname}</li>
-            <li>Email: ${data[i].email}</li>
-            <li>Location: ${data[i].location}</li>
-            <li>Phone: ${data[i].phone}</li>
-            <li>Address communication: ${data[i].address.communication}</li>
-            <li>Address permanent: ${data[i].address.permanent}</li>
-            <li> Marks:
-                <ul>
-                    <li>English: ${data[i].marks.english}</li>
-                    <li>Science: ${data[i].marks.science}</li>
-                    <li>Computers: ${data[i].marks.computers}</li>
-                    <li>Hardware: ${data[i].marks.hardware}</li>
-                </ul>
-            </li>
-        </ul>`
-        )
-      }
-  </script>
   
   <script src="./script.js"></script>
   <script src="./students-data.json"></script>

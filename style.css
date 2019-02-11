@@ -12,7 +12,7 @@ form.form-inline {
 }
 
 form {
-    margin-bottom: 60px;
+    margin-bottom: 30px;
 }
 
 .form-heading {
@@ -42,3 +42,8 @@ ul {
     background-color: inherit;
     border: none;
 }
+
+.pages {
+    text-align: right;
+}
+

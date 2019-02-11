@@ -15,7 +15,8 @@ $(document).ready(function() {
     let data = JSON.parse(localStorage.getItem('studentsinfo'));
     // $('.test').text(JSON.stringify(data[0].firstname));
 
-    for(let i = 0; i < 10; i++) {
+    let n = 10;
+    for(let i = 0; i < n; i++) {
         $('tbody').append(`<tr>
             <th scope='row'>${i+1}</th>
             <td>${data[i].firstname}</td>
@@ -30,16 +31,6 @@ $(document).ready(function() {
 
     let entry = $('tbody').children().last().children().first().text();
     console.log(entry);
-
-//     $('tbody').append(`<tr>
-//     <th scope='row'>1</th>
-//     <td>Mark</td>
-//     <td>Otto</td>
-//     <td>mark@mark.com</td>
-//     <td>New York</td>
-//     <td>123-123-1234</td>
-//     <td>New York, USA</td>
-//   </tr>`);
 
     $('form.form-inline').submit(function(event) {
         event.preventDefault();
@@ -105,6 +96,7 @@ $(document).ready(function() {
         <td>${values.location}</td>
         <td>${values.phone}</td>
         <td>${values.address.permanent}</td>
+        <td><button onclick="showModal()" class="btn btn-light btn-xs" data-toggle="modal" data-target="#exampleModal">More info</button></td>
         </tr>`);
         let storage = JSON.parse(localStorage.studentsinfo);
         storage.unshift(values);
@@ -115,4 +107,35 @@ $(document).ready(function() {
     });
 
 })
+
+
+// let data = JSON.parse(localStorage.getItem('studentsinfo'));
+
+function showModal() {
+    $('.modal-body').html(
+        `<ul>
+            <li>First name: ${data[i].firstname}</li>
+            <li>Last name: ${data[i].lastname}</li>
+            <li>Email: ${data[i].email}</li>
+            <li>Location: ${data[i].location}</li>
+            <li>Phone: ${data[i].phone}</li>
+            <li>Address communication: ${data[i].address.communication}</li>
+            <li>Address permanent: ${data[i].address.permanent}</li>
+            <li> Marks:
+                <ul>
+                    <li>English: ${data[i].marks.english}</li>
+                    <li>Science: ${data[i].marks.science}</li>
+                    <li>Computers: ${data[i].marks.computers}</li>
+                    <li>Hardware: ${data[i].marks.hardware}</li>
+                </ul>
+            </li>
+        </ul>`
+    )
+}
+
+function setNumber(number) {
+    alert(`Showing ${number} records`);
+    let n = number;
+    return n;
+}
 
