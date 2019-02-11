@@ -3,6 +3,7 @@ $(document).ready(function() {
     // localStorage.clear();
 
     if(localStorage.length == 0){
+        alert("Please refresh the page to load student data!")
         $.getJSON("./students-data.json", function(json) {
             localStorage.setItem('studentsinfo', JSON.stringify(json))
         });
